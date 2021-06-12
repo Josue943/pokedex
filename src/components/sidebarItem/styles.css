@@ -1,6 +1,6 @@
 .sidebar-item {
   height: 100px;
-  border-bottom: 4px solid var(--secondary-red);
+  border-bottom: var(--separator);
   color: #fff;
   display: flex;
   align-items: center;

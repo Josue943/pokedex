@@ -1,7 +1,8 @@
 .sidebar {
   border: var(--border);
-  border-radius: 5px;
+  border-radius: var(--main-border-radius);
   width: 450px;
   background: var(--dark-red);
   overflow: auto;
+  margin-right: 15px;
 }

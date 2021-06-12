@@ -1,0 +1,11 @@
+.main-content {
+  border: var(--border);
+  background: #fff;
+  flex: 1;
+  border-radius: var(--main-border-radius);
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+/**/
