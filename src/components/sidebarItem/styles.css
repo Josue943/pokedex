@@ -1,5 +1,31 @@
 .sidebar-item {
-  border-bottom: 5px solid #700808;
   height: 100px;
-  background: #480202;
+  border-bottom: 4px solid var(--secondary-red);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  font-size: 1.8rem;
+  padding: 0 40px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar-item:hover {
+  background: var(--secondary-red);
+}
+
+.item-img {
+  height: 45px;
+  width: 45px;
+}
+
+.item-name {
+  font-weight: 600;
+  margin-left: 40px;
+  flex: 1;
+}
+
+.item-id {
+  font-size: 1.4rem;
 }
