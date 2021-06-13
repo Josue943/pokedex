@@ -1,8 +1,9 @@
-import { CHANGE_PAGE, FETCH_POKEDEX, FETCH_POKEMON, SELECT_POKEMON, SET_QUERY, TOGGLE_INPUT } from './types';
+import { FETCH_POKEDEX, FETCH_POKEMON, LOAD_MORE_POKEDEX, SELECT_POKEMON, SET_QUERY, TOGGLE_INPUT } from './types';
 
 const initialState = {
   inputActive: false,
-  page: 1,
+  currentPage: 1,
+  pages: 0,
   pokedex: [],
   pokemon: null,
   query: '',
@@ -12,11 +13,11 @@ const initialState = {
 const homeReducer = (state = initialState, action) => {
   const { payload, type } = action;
   switch (type) {
-    case CHANGE_PAGE:
-      return { ...state, page: state.page + 1 };
-
     case FETCH_POKEDEX:
-      return { ...state, pokedex: [...state.pokedex, ...payload] };
+      return { ...state, pokedex: payload.pokemons, pages: payload.pages, currentPage: 1 };
+
+    case LOAD_MORE_POKEDEX:
+      return { ...state, pokedex: [...state.pokedex, ...payload.pokemons], currentPage: payload.currentPage };
 
     case FETCH_POKEMON:
       return { ...state, pokemon: payload };

@@ -14,13 +14,14 @@ const Main = ({ getPokemon, pokemon, selectedPokemon }) => {
   }, [selectedPokemon]);
 
   if (!pokemon) return null;
-  const { name, types, imgUrl, weight, height, abilities, egg_groups } = pokemon;
+
+  const { evolutions, ...rest } = pokemon;
 
   return (
     <div className='main-content'>
       <SearchBox />
-      <PokemonInfo egg_groups={egg_groups} abilities={abilities} name={name} types={types} imgUrl={imgUrl} weight={weight} height={height} />
-      <PokemonEvolutions imgUrl={imgUrl} />
+      <PokemonInfo {...rest} />
+      <PokemonEvolutions evolutions={evolutions.chain} />
     </div>
   );
 };

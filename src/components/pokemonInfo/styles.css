@@ -14,8 +14,8 @@
 }
 
 .pokemon-info-img-container > img {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
 }
 
 .pokemon-info-img-footer {
@@ -36,7 +36,7 @@
 
 .pokemon-info-data {
   margin-left: 60px;
-  min-width: 400px;
+  min-width: 300px;
   font-weight: bold;
 }
 

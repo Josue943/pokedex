@@ -1,24 +1,13 @@
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 
-import { fetchPokedex } from './store/entities/home/actions';
-import Main from './components/main';
-import Sidebar from './components/sidebar';
+import Home from './pages/home';
 
-function App({ fetchPokedex, page }) {
-  useEffect(() => {
-    fetchPokedex(page);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
-
+function App() {
   return (
-    <div className='container'>
-      <Sidebar />
-      <Main />
-    </div>
+    <Switch>
+      <Route path='/' exact component={Home} />
+    </Switch>
   );
 }
 
-const mapStateToProps = ({ home: { page } }) => ({ page });
-
-export default connect(mapStateToProps, { fetchPokedex })(App);
+export default App;

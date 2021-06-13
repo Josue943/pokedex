@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
 import { memo, useRef, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import './styles.css';
-import { changePage } from '../../store/entities/home/actions';
-import SidebarItem from '../sidebarItem';
+import { fetchPokedex } from '../../store/entities/home/actions';
+import PokedexItem from '../pokedexItem';
 
-const Sidebar = ({ changePage, page, pokedex, selectedPokemon }) => {
+const Sidebar = ({ currentPage, pages, pokedex, selectedPokemon, fetchPokedex }) => {
+  const query = new URLSearchParams(useLocation().search).get('query');
+
   const [element, setElement] = useState(null);
   const observer = useRef(
     new IntersectionObserver(
       entries => {
-        if (entries[0].isIntersecting) changePage();
+        if (entries[0].isIntersecting && currentPage > pages) fetchPokedex(true);
       },
       { threshold: 1 }
     )
@@ -24,17 +27,22 @@ const Sidebar = ({ changePage, page, pokedex, selectedPokemon }) => {
     };
   }, [element]);
 
-  const loadMorePokemons = index => (index === page * 25 - 5 ? true : false);
-  console.log(selectedPokemon);
+  useEffect(() => {
+    fetchPokedex();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
+
+  const elementRef = index => (index === currentPage * 25 - 5 ? true : false);
+
   return (
     <div className='sidebar'>
       {pokedex.map((pokemon, index) => (
-        <SidebarItem {...pokemon} selected={selectedPokemon === pokemon.id} {...(loadMorePokemons(index + 1) && { ref: setElement })} key={pokemon.id} />
+        <PokedexItem {...pokemon} selected={selectedPokemon === pokemon._id} {...(elementRef(index + 1) && { ref: setElement })} key={pokemon._id} />
       ))}
     </div>
   );
 };
 
-const mapStateToProps = ({ home: { pokedex, page, selectedPokemon } }) => ({ pokedex, page, selectedPokemon });
+const mapStateToProps = ({ home: { currentPage, pokedex, pages, selectedPokemon } }) => ({ pokedex, currentPage, selectedPokemon, pages });
 
-export default connect(mapStateToProps, { changePage })(memo(Sidebar));
+export default connect(mapStateToProps, { fetchPokedex })(memo(Sidebar));
