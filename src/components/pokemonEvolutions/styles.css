@@ -1,3 +1,41 @@
-.pokemon-evolutions {
+.evolutions {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  justify-content: center;
+}
+
+.evolutions .title {
+  font-size: 2.3rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.evolution-details {
+  align-items: center;
+  display: flex;
+}
+
+.evolution-detail {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.evolution-detail .name {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.evolution-img {
+  height: 200px;
+  width: 200px;
+}
+
+.arrow-right {
+  color: var(--primary-red);
+  font-size: 7rem;
+  margin: 0 35px;
 }

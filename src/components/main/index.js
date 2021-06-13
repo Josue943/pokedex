@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import { memo } from 'react';
 
 import './styles.css';
@@ -5,25 +6,19 @@ import PokemonInfo from '../pokemonInfo';
 import PokemonEvolutions from '../pokemonEvolutions';
 import SearchBox from '../searchBox';
 
-const Main = ({
-  name,
-  id,
-  sprites: {
-    other: {
-      dream_world: { front_default },
-    },
-  },
-  types,
-  ...rest
-}) => {
-  console.log(rest);
+const Main = ({ pokemon }) => {
+  if (!pokemon) return null;
+  const { name, types, imgUrl, weight, height, abilities, egg_groups } = pokemon;
+
   return (
     <div className='main-content'>
       <SearchBox />
-      <PokemonInfo img={front_default} name={name} types={types.map(type => type.type.name)} />
-      <PokemonEvolutions />
+      <PokemonInfo egg_groups={egg_groups} abilities={abilities} name={name} types={types} imgUrl={imgUrl} weight={weight} height={height} />
+      <PokemonEvolutions imgUrl={imgUrl} />
     </div>
   );
 };
 
-export default memo(Main);
+const mapStateToProps = ({ home: { pokemon } }) => ({ pokemon });
+
+export default connect(mapStateToProps)(memo(Main));

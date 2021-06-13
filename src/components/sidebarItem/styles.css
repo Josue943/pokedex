@@ -11,7 +11,7 @@
   border-radius: 5px;
 }
 
-.sidebar-item:hover {
+.item-selected {
   background: var(--secondary-red);
 }
 

@@ -29,6 +29,11 @@ p {
   text-transform: capitalize;
 }
 
+img {
+  width: 100%;
+  height: 100%;
+}
+
 .container {
   background: var(--primary-red);
   padding: 30px;
