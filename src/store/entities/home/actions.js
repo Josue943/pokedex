@@ -1,9 +1,12 @@
 import axios from '../../../api/config';
-import { CHANGE_PAGE, FETCH_POKEDEX, FETCH_POKEMON, SET_QUERY, TOGGLE_INPUT } from './types';
+import { CHANGE_PAGE, FETCH_POKEDEX, FETCH_POKEMON, SELECT_POKEMON, SET_QUERY, TOGGLE_INPUT } from './types';
 
 const baseUrl = (id, endPoint = 'pokemon') => `${endPoint}/${id}`;
+
 export const changePage = () => ({ type: CHANGE_PAGE });
+
 export const toggleInput = () => ({ type: TOGGLE_INPUT });
+
 export const setQuery = query => ({ type: SET_QUERY, payload: query });
 
 export const fetchPokedex = (page = 1) => {
@@ -26,12 +29,12 @@ export const fetchPokedex = (page = 1) => {
   };
 };
 
-export const getPokemon = gg => {
+export const getPokemon = pokemonId => {
   return async dispatch => {
     try {
       const {
         data: { id, name, sprites, types, weight, height, abilities, species, ...rest },
-      } = await axios(baseUrl(1));
+      } = await axios(baseUrl(pokemonId));
 
       const {
         data: { egg_groups, evolution_chain },
@@ -59,3 +62,5 @@ export const getPokemon = gg => {
     }
   };
 };
+
+export const selectPokemon = id => ({ type: SELECT_POKEMON, payload: id });

@@ -1,12 +1,18 @@
 import { connect } from 'react-redux';
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 
 import './styles.css';
+import { getPokemon } from '../../store/entities/home/actions';
 import PokemonInfo from '../pokemonInfo';
 import PokemonEvolutions from '../pokemonEvolutions';
 import SearchBox from '../searchBox';
 
-const Main = ({ pokemon }) => {
+const Main = ({ getPokemon, pokemon, selectedPokemon }) => {
+  useEffect(() => {
+    getPokemon(selectedPokemon);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedPokemon]);
+
   if (!pokemon) return null;
   const { name, types, imgUrl, weight, height, abilities, egg_groups } = pokemon;
 
@@ -19,6 +25,6 @@ const Main = ({ pokemon }) => {
   );
 };
 
-const mapStateToProps = ({ home: { pokemon } }) => ({ pokemon });
+const mapStateToProps = ({ home: { pokemon, selectedPokemon } }) => ({ pokemon, selectedPokemon });
 
-export default connect(mapStateToProps)(memo(Main));
+export default connect(mapStateToProps, { getPokemon })(memo(Main));

@@ -1,4 +1,4 @@
-import { CHANGE_PAGE, FETCH_POKEDEX, FETCH_POKEMON, SET_QUERY, TOGGLE_INPUT } from './types';
+import { CHANGE_PAGE, FETCH_POKEDEX, FETCH_POKEMON, SELECT_POKEMON, SET_QUERY, TOGGLE_INPUT } from './types';
 
 const initialState = {
   inputActive: false,
@@ -23,6 +23,9 @@ const homeReducer = (state = initialState, action) => {
 
     case TOGGLE_INPUT:
       return { ...state, inputActive: !state.inputActive };
+
+    case SELECT_POKEMON:
+      return { ...state, selectedPokemon: payload };
 
     case SET_QUERY:
       return { ...state, query: payload };
