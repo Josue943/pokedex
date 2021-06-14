@@ -17,10 +17,10 @@ const PokemonInfo = ({ imgUrl, name, types, weight, height, abilities, specie: {
     <div className='pokemon-info-data'>
       <h3>Information</h3>
       <h4 className='pokemon-detail '>
-        weight: <span>{weight} </span>
+        weight: <span>{(weight / 4.536).toFixed(1)} Lbs</span>
       </h4>
       <h4 className='pokemon-detail '>
-        height: <span>{height}</span>
+        height: <span>{(height / 3.048).toFixed(1)}</span>
       </h4>
       <h4 className='pokemon-detail '>
         Species: <span>Seed</span>

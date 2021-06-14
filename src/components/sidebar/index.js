@@ -8,8 +8,8 @@ import PokedexItem from '../pokedexItem';
 
 const Sidebar = ({ currentPage, pages, pokedex, selectedPokemon, fetchPokedex }) => {
   const query = new URLSearchParams(useLocation().search).get('query');
-
   const [element, setElement] = useState(null);
+
   const observer = useRef(
     new IntersectionObserver(
       entries => {
